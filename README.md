@@ -2,6 +2,20 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.7.
 
+# Functionality
+
+Added FirstComponent with the template, which has been used in AppComponent as navigation bar on the main app page.
+
+Added ProductComponent with onBuy() event handler, which logs to console the message about bought products. Added template for product, which contains title, description,
+price, photo, amount in stock etc. Added Buy button and linked onBuy() handler to onClick event.
+
+Implemented ProductService. The service contains method to get the list of products, get one product by id and method to decrease product amount in stock when user buys it.
+If product amount in stock is 3 or less(but not 0), user is informed about little amount. If product amount in stock is 0, user is informed about it in product status and by message in console, Buy button become disabled.
+
+Added CartComponent, which is responsible for displaying items in shopping cart and its amount.
+
+Implemented CartService. It has functionality to put the product into the cart, to increase product amount in cart if such product has already bought and display the message if the cart is empty. Information messages are diplayed in console, such as adding good into the shopping cart and increasing total amount in cheque after adding products.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
