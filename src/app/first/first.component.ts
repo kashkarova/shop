@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from '../category';
+import { Category } from '../product/category';
 
 @Component({
   selector: 'app-first',
@@ -12,7 +12,7 @@ export class FirstComponent implements OnInit {
   public description: string;
   public price: number;
   public category: Category;
-  isAvailable: boolean;
+  public isAvailable: boolean;
 
   constructor() { }
 

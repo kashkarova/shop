@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ProductModel } from '../product-model';
-import { ProductsService } from '../products.service';
+import { ProductModel } from './product-model';
+import { ProductsService } from './products.service';
 
 @Component({
   selector: 'app-product',
@@ -17,6 +17,6 @@ export class ProductComponent implements OnInit {
 
   public onBuy(): void {
     this.productService.decreaseProductAmount(this.product.id);
-    console.log('The good was put into the basket');
+    console.log('The good was put into the shopping cart');
   }
 }
