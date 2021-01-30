@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ProductModel } from '../product-model';
-import { ProductsService } from '../products.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ProductModel } from './product-model';
 
 @Component({
   selector: 'app-product',
@@ -11,12 +10,15 @@ export class ProductComponent implements OnInit {
   @Input()
   public product: ProductModel;
 
-  constructor(private readonly productService: ProductsService) {  }
+  @Output()
+  decreaseProductAmountEvent = new EventEmitter<number>();
 
-  ngOnInit(): void {  }
+  constructor() { }
+
+  ngOnInit(): void { }
 
   public onBuy(): void {
-    this.productService.decreaseProductAmount(this.product.id);
-    console.log('The good was put into the basket');
+    this.decreaseProductAmountEvent.emit(this.product.id);
+    console.log('The good was put into the shopping cart');
   }
 }

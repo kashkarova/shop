@@ -1,16 +1,39 @@
 import { Injectable } from '@angular/core';
-import { BasketService } from './basket.service';
+import { CartService } from '../cart/cart.service';
 import { Category } from './category';
 import { ProductModel } from './product-model';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProductsService {
   private productList: ProductModel[];
 
-  constructor(private readonly basketService: BasketService) {
+  constructor(private readonly cartService: CartService) {
     this.setProducts();
+  }
+
+  public getProducts(): ProductModel[] {
+    return this.productList;
+  }
+
+  public getProduct(id: number): ProductModel {
+    return this.productList.find(i => i.id === id);
+  }
+
+  public decreaseProductAmount(id: number): void {
+    const product = this.getProduct(id);
+
+    if (product.amount > 0) {
+      product.amount--;
+      this.cartService.addToCart(product);
+    }
+
+    if (product.amount === 0 && product.isAvailable) {
+      product.isAvailable = false;
+      console.log('Unfortunately, this product is unavailable');
+    }
   }
 
   private setProducts(): ProductModel[] {
@@ -118,26 +141,5 @@ export class ProductsService {
     ];
 
     return this.productList;
-  }
-
-  public getProducts(): ProductModel[] {
-    return this.productList;
-  }
-
-  public getProduct(id: number): ProductModel {
-    return this.productList.find(i => i.id === id);
-  }
-
-  public decreaseProductAmount(id: number): void {
-    var product = this.getProduct(id);
-
-    if (product.amount > 0) {
-      product.amount--;
-      this.basketService.addToBasket(product);
-    }
-
-    if (product.amount === 0 && product.isAvailable) {
-      product.isAvailable = false;
-    }
   }
 }

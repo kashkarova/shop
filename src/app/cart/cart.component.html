@@ -1,0 +1,14 @@
+<p>This is a shopping cart!</p>
+
+<ng-container *ngIf="productsInCart?.length > 0;else second">
+    <ul *ngFor="let product of productsInCart">
+        <li>
+            <p>{{product.name}} - {{product.amount}}</p>
+        </li>
+    </ul>
+</ng-container>
+<ng-template #second>
+    <p>and now it is empty :)</p>
+</ng-template>
+
+
