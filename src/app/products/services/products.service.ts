@@ -1,28 +1,29 @@
 import { Injectable } from '@angular/core';
-import { CartService } from '../cart/cart.service';
-import { Category } from './category';
-import { ProductModel } from './product-model';
+import { CartService } from '../../cart/services/cart.service';
+import { Category } from '../models/category.enum';
+import { ProductModel } from '../models/product-model';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ProductsService {
+
   private productList: ProductModel[];
 
   constructor(private readonly cartService: CartService) {
     this.setProducts();
   }
 
-  public getProducts(): ProductModel[] {
+  getProducts(): ProductModel[] {
     return this.productList;
   }
 
-  public getProduct(id: number): ProductModel {
+  getProduct(id: number): ProductModel {
     return this.productList.find(i => i.id === id);
   }
 
-  public decreaseProductAmount(id: number): void {
+  decreaseProductAmount(id: number): void {
     const product = this.getProduct(id);
 
     if (product.amount > 0) {
