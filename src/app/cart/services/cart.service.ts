@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { ProductModel } from '../product/product-model';
-import { ProductInCartModel } from './product-in-cart-model';
+import { ProductModel } from '../../products/models/product-model';
+import { ProductInCartModel } from '../models/product-in-cart-model';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class CartService {
 
   private readonly itemsInCart: ProductInCartModel[];
@@ -15,15 +16,15 @@ export class CartService {
     this.total = 0;
   }
 
-  public getCartItems(): ProductInCartModel[] {
+  getCartItems(): ProductInCartModel[] {
     return this.itemsInCart;
   }
 
-  public getTotalAmount(): number {
+  getTotalAmount(): number {
     return this.total;
   }
 
-  public addToCart(item: ProductModel): ProductInCartModel[] {
+  addToCart(item: ProductModel): ProductInCartModel[] {
     const existingItem = this.itemsInCart.find(i => i.id === item.id);
     if (existingItem) {
       existingItem.amount++;

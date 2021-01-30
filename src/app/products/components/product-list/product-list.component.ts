@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductModel } from '../product/product-model';
-import { ProductsService } from '../product/products.service';
+import { ProductModel } from '../../models/product-model';
+import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'app-product-list',
@@ -8,7 +8,8 @@ import { ProductsService } from '../product/products.service';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  public products: ProductModel[];
+
+  products: ProductModel[];
 
   constructor(private readonly productService: ProductsService) {
     this.products = this.productService.getProducts();
@@ -16,7 +17,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  public decreaseProductAmountInCart(product: ProductModel): void {
+  decreaseProductAmountInCart(product: ProductModel): void {
     this.productService.decreaseProductAmount(product.id);
   }
 }

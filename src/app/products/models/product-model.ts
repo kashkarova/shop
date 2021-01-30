@@ -1,4 +1,4 @@
-import { Category } from './category';
+import { Category } from './category.enum';
 
 export interface IProductModel {
     id: number;
