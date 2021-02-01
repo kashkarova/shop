@@ -17,7 +17,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  decreaseProductAmountInCart(product: ProductModel): void {
+  addProductToCart(product: ProductModel): void {
     this.productService.decreaseProductAmount(product.id);
   }
 }

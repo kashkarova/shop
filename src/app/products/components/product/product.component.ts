@@ -13,14 +13,14 @@ export class ProductComponent implements OnInit {
   product: ProductModel;
 
   @Output()
-  decreaseProductAmountEvent = new EventEmitter<number>();
+  addProductToCartEvent = new EventEmitter<number>();
 
   constructor() { }
 
   ngOnInit(): void { }
 
   onBuy(): void {
-    this.decreaseProductAmountEvent.emit(this.product.id);
+    this.addProductToCartEvent.emit(this.product.id);
     console.log('The good was put into the shopping cart');
   }
 }
