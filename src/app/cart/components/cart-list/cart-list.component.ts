@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../services/cart.service';
-import { ProductInCartModel } from '../models/product-in-cart-model';
+import { CartService } from '../../services/cart.service';
+import { ProductInCartModel } from '../../models/product-in-cart-model';
 
 @Component({
   selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  templateUrl: './cart-list.component.html',
+  styleUrls: ['./cart-list.component.css']
 })
-export class CartComponent implements OnInit {
+export class CartListComponent implements OnInit {
 
   productsInCart: ProductInCartModel[];
   totalAmount: number;
