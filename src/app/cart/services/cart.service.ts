@@ -38,12 +38,12 @@ export class CartService {
       this.itemsInCart.push(itemInCart);
     }
 
-    this.increaseTotalAmount();
+    this.calculateTotalAmount();
 
     return this.itemsInCart;
   }
 
-  private increaseTotalAmount(): void {
+  private calculateTotalAmount(): void {
 
     this.total = 0;
 

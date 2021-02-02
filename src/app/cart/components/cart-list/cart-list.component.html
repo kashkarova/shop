@@ -3,7 +3,7 @@
 <ng-container *ngIf="productsInCart?.length > 0;else second">
     <ul *ngFor="let product of productsInCart">
         <li>
-            <p>{{product.name}} - {{product.amount}}</p>
+            <app-cart-item [productInCart]="product"></app-cart-item>
         </li>
     </ul>
 </ng-container>
