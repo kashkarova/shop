@@ -21,7 +21,6 @@ export class ProductListComponent implements OnInit {
   addProductToCart(product: ProductModel): void {
     const isDecreasedInStock = this.productService.decreaseProductAmountInStock(product.id);
     if (isDecreasedInStock) {
-      console.log('decreased in stock component');
       this.cartService.addToCart(product);
     } else {
       console.log('error!');
