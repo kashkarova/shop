@@ -48,7 +48,6 @@ export class ProductsService {
     const product = this.getProduct(productId);
     product.amount += amount;
     product.isAvailable = true;
-    console.log('increased in stock');
   }
 
   private setProducts(): ProductModel[] {
