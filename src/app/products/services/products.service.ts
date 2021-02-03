@@ -33,7 +33,6 @@ export class ProductsService {
 
     if (product.amount > 0) {
       product.amount--;
-      console.log('decreased in stock');
     }
 
     if (product.amount === 0 && product.isAvailable) {
