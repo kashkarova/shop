@@ -25,10 +25,8 @@ export class CartService {
   }
 
   addToCart(item: ProductModel): ProductInCartModel[] {
-    const existingItem = this.itemsInCart.find(i => i.id === item.id);
-    if (existingItem) {
-      existingItem.amount++;
-    } else {
+    const isAmountIncreased = this.increaseProductAmountInCart(item.id);
+    if (!isAmountIncreased) {
       const itemInCart = new ProductInCartModel();
       itemInCart.id = item.id;
       itemInCart.name = item.name;
@@ -41,6 +39,50 @@ export class CartService {
     this.calculateTotalAmount();
 
     return this.itemsInCart;
+  }
+
+  increaseProductAmountInCart(itemId: number): boolean {
+    const existingItem = this.itemsInCart.find(i => i.id === itemId);
+
+    if (existingItem) {
+      existingItem.amount++;
+      this.calculateTotalAmount();
+      return true;
+    }
+
+    return false;
+  }
+
+  decreaseProductAmountInCart(itemId: number): boolean {
+    const existingItem = this.itemsInCart.find(i => i.id === itemId);
+
+    if (!existingItem) {
+      console.log('Error! There is no such product in the cart!');
+      return false;
+    }
+
+    if (existingItem.amount <= 1) {
+      this.deleteProductFromCart(existingItem.id);
+    } else {
+      existingItem.amount--;
+    }
+
+    this.calculateTotalAmount();
+    return true;
+  }
+
+  deleteProductFromCart(itemId: number): boolean {
+    const existingItem = this.itemsInCart.find(i => i.id === itemId);
+
+    if (existingItem) {
+      const itemIndex = this.itemsInCart.indexOf(existingItem);
+      this.itemsInCart.splice(itemIndex, 1);
+
+      return true;
+    }
+
+    console.log('Error! There is no such product in the cart!');
+    return false;
   }
 
   private calculateTotalAmount(): void {
