@@ -36,7 +36,6 @@ export class CartListComponent implements OnInit {
 
     if (isDecreasedInCart){
       this.productService.increaseProductAmountInStock(product.id, 1);
-      console.log('Product amount in cart has been decreased');
     }
   }
 
