@@ -23,18 +23,32 @@ export class ProductsService {
     return this.productList.find(i => i.id === id);
   }
 
-  decreaseProductAmount(id: number): void {
-    const product = this.getProduct(id);
+  decreaseProductAmountInStock(productId: number): boolean {
+    const product = this.getProduct(productId);
+
+    if(!product.isAvailable)
+    {
+      return false;
+    }
 
     if (product.amount > 0) {
       product.amount--;
-      this.cartService.addToCart(product);
+      console.log('decreased in stock');
     }
 
     if (product.amount === 0 && product.isAvailable) {
       product.isAvailable = false;
       console.log('Unfortunately, this product is unavailable');
     }
+
+    return true;
+  }
+
+  increaseProductAmountInStock(productId: number, amount: number): void {
+    const product = this.getProduct(productId);
+    product.amount += amount;
+    product.isAvailable = true;
+    console.log('increased in stock');
   }
 
   private setProducts(): ProductModel[] {

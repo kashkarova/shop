@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ProductsService } from 'src/app/products/services/products.service';
 import { ProductModel } from '../../products/models/product-model';
 import { ProductInCartModel } from '../models/product-in-cart-model';
 
@@ -25,8 +26,10 @@ export class CartService {
   }
 
   addToCart(item: ProductModel): ProductInCartModel[] {
+    console.log('call add to cart in cart service');
     const isAmountIncreased = this.increaseProductAmountInCart(item.id);
-    if (!isAmountIncreased) {
+    if (isAmountIncreased === false) {
+      console.log('isAmountIncreased is false');
       const itemInCart = new ProductInCartModel();
       itemInCart.id = item.id;
       itemInCart.name = item.name;
@@ -47,37 +50,39 @@ export class CartService {
     if (existingItem) {
       existingItem.amount++;
       this.calculateTotalAmount();
+      console.log('increased in cart');
       return true;
     }
-
+console.log('not increased in cart');
     return false;
   }
 
-  decreaseProductAmountInCart(itemId: number): boolean {
-    const existingItem = this.itemsInCart.find(i => i.id === itemId);
+  decreaseProductAmountInCart(productId: number): boolean {
+    const existingItem = this.itemsInCart.find(i => i.id === productId);
 
     if (!existingItem) {
       console.log('Error! There is no such product in the cart!');
       return false;
     }
 
-    if (existingItem.amount <= 1) {
-      this.deleteProductFromCart(existingItem.id);
-    } else {
+    if (existingItem.amount > 1) {
       existingItem.amount--;
+      console.log('decreased in cart');
+    } else {
+      this.deleteProductFromCart(existingItem.id);
+      console.log('deleted from cart');
     }
 
     this.calculateTotalAmount();
     return true;
   }
 
-  deleteProductFromCart(itemId: number): boolean {
-    const existingItem = this.itemsInCart.find(i => i.id === itemId);
+  deleteProductFromCart(productId: number): boolean {
+    const existingItem = this.itemsInCart.find(i => i.id === productId);
 
     if (existingItem) {
       const itemIndex = this.itemsInCart.indexOf(existingItem);
       this.itemsInCart.splice(itemIndex, 1);
-
       return true;
     }
 

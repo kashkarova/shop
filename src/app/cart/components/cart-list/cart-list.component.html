@@ -1,9 +1,9 @@
 <p>This is a shopping cart!</p>
 
 <ng-container *ngIf="productsInCart?.length > 0;else second">
-    <ul *ngFor="let product of productsInCart">
+    <ul *ngFor="let product of productsInCart" class="list-unstyled">
         <li>
-            <app-cart-item [productInCart]="product"></app-cart-item>
+            <app-cart-item [productInCart]="product" (increaseAmountEvent)="increaseProductAmountInCart(product)" (decreaseAmountEvent)="decreaseProductAmountInCart(product)" (deleteProductEvent)="deleteProductFromCart(product)"></app-cart-item>
         </li>
     </ul>
 </ng-container>

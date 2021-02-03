@@ -1,6 +1,9 @@
-<div class="my-2 my-lg-0">
-    <p>{{productInCart.name}}</p>
-    <button class="btn btn-outline-primary my-2 my-sm-0">+</button>
-    <span class="badge badge-primary badge-pill">{{productInCart.amount}}</span>
-    <button class="btn btn-outline-secondary my-2 my-sm-0">-</button>
+<div class="row">
+    <p class="col col-lg-1">{{productInCart.name}}</p>
+    <div class="col">
+        <button class="btn btn-outline-primary my-2 my-sm-0 mr-2" (click)="increaseAmount()">+</button>
+        <span class="badge badge-primary badge-pill">{{productInCart.amount}}</span>
+        <button class="btn btn-outline-primary my-2 my-sm-0 ml-2" (click)="decreaseAmount()">-</button>
+        <button class="btn btn-outline-danger my-2 my-sm-0 ml-2" (click)="deleteProductFromCart()">x</button>
+    </div>
 </div>
