@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ProductsService } from 'src/app/products/services/products.service';
 import { ProductModel } from '../../products/models/product-model';
 import { ProductInCartModel } from '../models/product-in-cart-model';
 
@@ -50,10 +49,8 @@ export class CartService {
     if (existingItem) {
       existingItem.amount++;
       this.calculateTotalAmount();
-      console.log('increased in cart');
       return true;
     }
-console.log('not increased in cart');
     return false;
   }
 
@@ -67,10 +64,8 @@ console.log('not increased in cart');
 
     if (existingItem.amount > 1) {
       existingItem.amount--;
-      console.log('decreased in cart');
     } else {
       this.deleteProductFromCart(existingItem.id);
-      console.log('deleted from cart');
     }
 
     this.calculateTotalAmount();
@@ -83,6 +78,8 @@ console.log('not increased in cart');
     if (existingItem) {
       const itemIndex = this.itemsInCart.indexOf(existingItem);
       this.itemsInCart.splice(itemIndex, 1);
+
+      this.calculateTotalAmount();
       return true;
     }
 
