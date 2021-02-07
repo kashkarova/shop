@@ -26,7 +26,7 @@ export class ProductsService {
   decreaseProductAmountInStock(productId: number): boolean {
     const product = this.getProduct(productId);
 
-    if(!product.isAvailable)
+    if (!product.isAvailable)
     {
       return false;
     }

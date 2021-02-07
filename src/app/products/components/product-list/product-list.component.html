@@ -1,5 +1,3 @@
-<h2 class="d-flex justify-content-center">Products list</h2>
-
 <ul *ngFor="let product of products" class="d-inline">
     <li class="col-sm-3">
         <app-product [product]="product" (addProductToCartEvent)="addProductToCart(product)"></app-product>
