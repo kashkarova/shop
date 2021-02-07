@@ -8,7 +8,10 @@
                 (deleteProductEvent)="deleteProductFromCart(product)"></app-cart-item>
         </li>
     </ul>
-    <p class="col col-lg-1">Total: {{totalAmount}} $</p>
+    <span class="row ml-3">Total: 
+        <p [ngStyle]="{'font-weight':'bold'}">{{totalAmount}} $</p>
+    </span>
+    
 </ng-container>
 
 <ng-template #second>
