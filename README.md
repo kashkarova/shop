@@ -16,6 +16,15 @@ Added CartComponent, which is responsible for displaying items in shopping cart 
 
 Implemented CartService. It has functionality to put the product into the cart, to increase product amount in cart if such product has already bought and display the message if the cart is empty. Information messages are diplayed in console, such as adding good into the shopping cart and increasing total amount in cheque after adding products.
 
+Modified CatrService by implementing methods for total quantity and total amount calculation. Total amount user can see in cart. Total quantity is visible on Cart button, which is at navigation panel. If there are no products in cart, total quantity is invisible(regulated by [ngClass] directive)
+
+Used input and output(with events) directives in cart component for increasing, decreasing and deleting products from cart. Added buttons for these operations.
+
+Added template variable #appTitle, used @ViewChild for setting.
+
+Used several hook methods, like ngAfterViewInit, ngAfterViewChecked, ngDoCheck etc. Used several DOM events() and HighlightDirective for implementing functionality, related to button highlights. Highlight color is different according to borderColor of each button.
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
