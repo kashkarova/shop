@@ -9,11 +9,13 @@ import { ProductInCartModel } from '../models/product-in-cart-model';
 export class CartService {
 
   private readonly itemsInCart: ProductInCartModel[];
-  private total: number;
+  private totalAmount: number;
+  private totalQuantity: number;
 
   constructor() {
     this.itemsInCart = [];
-    this.total = 0;
+    this.totalAmount = 0;
+    this.totalQuantity = 0;
   }
 
   getCartItems(): ProductInCartModel[] {
@@ -21,7 +23,11 @@ export class CartService {
   }
 
   getTotalAmount(): number {
-    return this.total;
+    return this.totalAmount;
+  }
+
+  getTotalQuantity(): number {
+    return this.totalQuantity;
   }
 
   addToCart(item: ProductModel): ProductInCartModel[] {
@@ -39,6 +45,7 @@ export class CartService {
     }
 
     this.calculateTotalAmount();
+    this.calculateTotalQuantity();
 
     return this.itemsInCart;
   }
@@ -49,6 +56,7 @@ export class CartService {
     if (existingItem) {
       existingItem.amount++;
       this.calculateTotalAmount();
+      this.calculateTotalQuantity();
       return true;
     }
     return false;
@@ -67,7 +75,7 @@ export class CartService {
     } else {
       this.deleteProductFromCart(existingItem.id);
     }
-
+    this.calculateTotalQuantity();
     this.calculateTotalAmount();
     return true;
   }
@@ -78,7 +86,7 @@ export class CartService {
     if (existingItem) {
       const itemIndex = this.itemsInCart.indexOf(existingItem);
       this.itemsInCart.splice(itemIndex, 1);
-
+      this.calculateTotalQuantity();
       this.calculateTotalAmount();
       return true;
     }
@@ -87,13 +95,23 @@ export class CartService {
     return false;
   }
 
-  private calculateTotalAmount(): void {
+  private calculateTotalQuantity(): void {
 
-    this.total = 0;
+    this.totalQuantity = 0;
 
     this.itemsInCart.forEach(item => {
-      this.total += item.price * item.amount;
+      this.totalQuantity += item.amount;
     });
-    console.log('Total sum in shopping cart: ' + this.total + '$');
+    console.log('Total quantity in shopping cart: ' + this.totalQuantity + '$');
+  }
+
+  private calculateTotalAmount(): void {
+
+    this.totalAmount = 0;
+
+    this.itemsInCart.forEach(item => {
+      this.totalAmount += item.price * item.amount;
+    });
+    console.log('Total sum in shopping cart: ' + this.totalAmount + '$');
   }
 }

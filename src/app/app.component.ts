@@ -8,6 +8,7 @@ import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, ElementR
 
 export class AppComponent implements AfterViewInit, AfterViewChecked {
   title = 'shop';
+  isVisible: boolean;
 
   @ViewChild('appTitle', { read: ElementRef })
   appTitle: ElementRef;
@@ -20,5 +21,9 @@ export class AppComponent implements AfterViewInit, AfterViewChecked {
 
   ngAfterViewChecked(): void {
     this.changeDetector.detectChanges();
+  }
+
+  toggle(): void {
+    this.isVisible = !this.isVisible;
   }
 }
