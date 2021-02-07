@@ -1,0 +1,19 @@
+<div>This is a shopping cart!</div>
+
+<ng-container *ngIf="productsInCart?.length > 0; else second">
+    <ul *ngFor="let product of productsInCart" class="list-unstyled">
+        <li class="cart-item">
+            <app-cart-item [productInCart]="product" (increaseAmountEvent)="increaseProductAmountInCart(product)"
+                (decreaseAmountEvent)="decreaseProductAmountInCart(product)"
+                (deleteProductEvent)="deleteProductFromCart(product)"></app-cart-item>
+        </li>
+    </ul>
+    <span class="row ml-3">Total: 
+        <p [ngStyle]="{'font-weight':'bold'}">{{totalAmount}} $</p>
+    </span>
+    
+</ng-container>
+
+<ng-template #second>
+    <p>and now it is empty :)</p>
+</ng-template>

@@ -1,8 +1,12 @@
+<link rel="stylesheet" href="first.component.css"/>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="#">Shop</a>
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
         </ul>
-        <button class="btn btn-secondary my-2 my-lg-0" type="submit">Cart</button>
+        <button appHighlight class="btn btn-secondary my-2 my-lg-0" type="submit">Cart
+            <span class="badge badge-primary badge-pill" [ngClass]="{invisible: !isVisible}">{{totalQuantity}}</span>
+        </button>
     </div>
 </nav>

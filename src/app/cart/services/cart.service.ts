@@ -9,11 +9,13 @@ import { ProductInCartModel } from '../models/product-in-cart-model';
 export class CartService {
 
   private readonly itemsInCart: ProductInCartModel[];
-  private total: number;
+  private totalAmount: number;
+  private totalQuantity: number;
 
   constructor() {
     this.itemsInCart = [];
-    this.total = 0;
+    this.totalAmount = 0;
+    this.totalQuantity = 0;
   }
 
   getCartItems(): ProductInCartModel[] {
@@ -21,14 +23,18 @@ export class CartService {
   }
 
   getTotalAmount(): number {
-    return this.total;
+    return this.totalAmount;
+  }
+
+  getTotalQuantity(): number {
+    return this.totalQuantity;
   }
 
   addToCart(item: ProductModel): ProductInCartModel[] {
-    const existingItem = this.itemsInCart.find(i => i.id === item.id);
-    if (existingItem) {
-      existingItem.amount++;
-    } else {
+    console.log('call add to cart in cart service');
+    const isAmountIncreased = this.increaseProductAmountInCart(item.id);
+    if (isAmountIncreased === false) {
+      console.log('isAmountIncreased is false');
       const itemInCart = new ProductInCartModel();
       itemInCart.id = item.id;
       itemInCart.name = item.name;
@@ -38,18 +44,74 @@ export class CartService {
       this.itemsInCart.push(itemInCart);
     }
 
-    this.increaseTotalAmount();
+    this.calculateTotalAmount();
+    this.calculateTotalQuantity();
 
     return this.itemsInCart;
   }
 
-  private increaseTotalAmount(): void {
+  increaseProductAmountInCart(itemId: number): boolean {
+    const existingItem = this.itemsInCart.find(i => i.id === itemId);
 
-    this.total = 0;
+    if (existingItem) {
+      existingItem.amount++;
+      this.calculateTotalAmount();
+      this.calculateTotalQuantity();
+      return true;
+    }
+    return false;
+  }
+
+  decreaseProductAmountInCart(productId: number): boolean {
+    const existingItem = this.itemsInCart.find(i => i.id === productId);
+
+    if (!existingItem) {
+      console.log('Error! There is no such product in the cart!');
+      return false;
+    }
+
+    if (existingItem.amount > 1) {
+      existingItem.amount--;
+    } else {
+      this.deleteProductFromCart(existingItem.id);
+    }
+    this.calculateTotalQuantity();
+    this.calculateTotalAmount();
+    return true;
+  }
+
+  deleteProductFromCart(productId: number): boolean {
+    const existingItem = this.itemsInCart.find(i => i.id === productId);
+
+    if (existingItem) {
+      const itemIndex = this.itemsInCart.indexOf(existingItem);
+      this.itemsInCart.splice(itemIndex, 1);
+      this.calculateTotalQuantity();
+      this.calculateTotalAmount();
+      return true;
+    }
+
+    console.log('Error! There is no such product in the cart!');
+    return false;
+  }
+
+  private calculateTotalQuantity(): void {
+
+    this.totalQuantity = 0;
 
     this.itemsInCart.forEach(item => {
-      this.total += item.price * item.amount;
+      this.totalQuantity += item.amount;
     });
-    console.log('Total sum in shopping cart: ' + this.total + '$');
+    console.log('Total quantity in shopping cart: ' + this.totalQuantity + '$');
+  }
+
+  private calculateTotalAmount(): void {
+
+    this.totalAmount = 0;
+
+    this.itemsInCart.forEach(item => {
+      this.totalAmount += item.price * item.amount;
+    });
+    console.log('Total sum in shopping cart: ' + this.totalAmount + '$');
   }
 }

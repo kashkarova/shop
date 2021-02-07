@@ -1,0 +1,9 @@
+<div class="row">
+    <p class="col col-lg-1">{{productInCart.name}}</p>
+    <div class="col">
+        <button appHighlight class="btn btn-outline-primary my-2 my-sm-0 mr-2" (click)="increaseAmount()">+</button>
+        <span class="badge badge-primary badge-pill">{{productInCart.amount}}</span>
+        <button appHighlight class="btn btn-outline-primary my-2 my-sm-0 ml-2" (click)="decreaseAmount()">-</button>
+        <button appHighlight class="btn btn-outline-danger my-2 my-sm-0 ml-2" (click)="deleteProductFromCart()">x</button>
+    </div>
+</div>

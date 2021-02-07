@@ -7,7 +7,7 @@
       <h5 class="col-8 col-sm-6 text-primary">{{product.description}}</h5>
       <h3 class="card-subtitle col-4 col-sm-6 text-secondary">{{product.price}}$</h3>
     </div>
-    <button type="button" class="btn btn-outline-primary card-body" (click)="onBuy()" [disabled]="product.amount === 0">Buy</button>
+    <button appHighlight type="button" class="btn btn-outline-primary card-body" (click)="onBuy()" [disabled]="product.amount === 0">Buy</button>
     <div class="card-footer">
       <p *ngIf="product.amount === 0">The item is unavailable.</p>
       <p *ngIf="product.amount > 0 && product.amount <= 3">Hurry up! The amount of good ends.</p>      
