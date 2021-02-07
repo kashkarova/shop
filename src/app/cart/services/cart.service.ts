@@ -30,6 +30,13 @@ export class CartService {
     return this.totalQuantity;
   }
 
+  isEmptyCart(): boolean {
+    if (this.totalQuantity <= 0) {
+      return false;
+    }
+    else { return true; }
+  }
+
   addToCart(item: ProductModel): ProductInCartModel[] {
     console.log('call add to cart in cart service');
     const isAmountIncreased = this.increaseProductAmountInCart(item.id);

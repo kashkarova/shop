@@ -8,7 +8,7 @@ import { ProductComponent } from './products/components/product/product.componen
 import { ProductListComponent } from './products/components/product-list/product-list.component';
 import { CartListComponent } from './cart/components/cart-list/cart-list.component';
 import { CartItemComponent } from './cart/components/cart-item/cart-item.component';
-import { HighlightDirective } from './highlight.directive';
+import { HighlightDirective } from './core/directives/highlight.directive';
 
 @NgModule({
   declarations: [
