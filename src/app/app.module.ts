@@ -9,6 +9,7 @@ import { ProductListComponent } from './products/components/product-list/product
 import { CartListComponent } from './cart/components/cart-list/cart-list.component';
 import { CartItemComponent } from './cart/components/cart-item/cart-item.component';
 import { HighlightDirective } from './shared/directives/highlight.directive';
+import { GeneratorServiceProvider } from './core/providers/generator-service-provider';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { HighlightDirective } from './shared/directives/highlight.directive';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [GeneratorServiceProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
