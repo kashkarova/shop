@@ -8,15 +8,9 @@ import { ProductInCartModel } from '../models/product-in-cart-model';
 
 export class CartService {
 
-  private readonly itemsInCart: ProductInCartModel[];
-  private totalAmount: number;
-  private totalQuantity: number;
-
-  constructor() {
-    this.itemsInCart = [];
-    this.totalAmount = 0;
-    this.totalQuantity = 0;
-  }
+  private readonly itemsInCart: ProductInCartModel[] = [];
+  private totalAmount = 0;
+  private totalQuantity = 0;
 
   getCartItems(): ProductInCartModel[] {
     return this.itemsInCart;
