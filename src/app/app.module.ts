@@ -10,6 +10,7 @@ import { CartListComponent } from './cart/components/cart-list/cart-list.compone
 import { CartItemComponent } from './cart/components/cart-item/cart-item.component';
 import { HighlightDirective } from './shared/directives/highlight.directive';
 import { GeneratorServiceProvider } from './core/providers/generator-service-provider';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -18,12 +19,12 @@ import { GeneratorServiceProvider } from './core/providers/generator-service-pro
     ProductComponent,
     ProductListComponent,
     CartListComponent,
-    CartItemComponent,
-    HighlightDirective
+    CartItemComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [GeneratorServiceProvider],
   bootstrap: [AppComponent]

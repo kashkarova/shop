@@ -1,5 +1,5 @@
 <ul *ngFor="let product of products" class="d-inline">
     <li class="col-sm-3">
-        <app-product [product]="product" (addProductToCartEvent)="addProductToCart(product)"></app-product>
+        <app-product [product]="product" (addProductToCartEvent)="onAddProductToCart(product)"></app-product>
     </li>
 </ul>
