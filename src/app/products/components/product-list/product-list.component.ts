@@ -19,7 +19,7 @@ export class ProductListComponent implements OnInit {
     this.products = this.productService.getProducts();
   }
 
-  addProductToCart(product: ProductModel): void {
+  onAddProductToCart(product: ProductModel): void {
     const isDecreasedInStock = this.productService.decreaseProductAmountInStock(product.id);
     if (isDecreasedInStock) {
       this.cartService.addToCart(product);

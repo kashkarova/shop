@@ -8,7 +8,7 @@ import { ProductComponent } from './products/components/product/product.componen
 import { ProductListComponent } from './products/components/product-list/product-list.component';
 import { CartListComponent } from './cart/components/cart-list/cart-list.component';
 import { CartItemComponent } from './cart/components/cart-item/cart-item.component';
-import { HighlightDirective } from './highlight.directive';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -17,12 +17,12 @@ import { HighlightDirective } from './highlight.directive';
     ProductComponent,
     ProductListComponent,
     CartListComponent,
-    CartItemComponent,
-    HighlightDirective
+    CartItemComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
