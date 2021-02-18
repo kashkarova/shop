@@ -1,6 +1,6 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit, Optional } from '@angular/core';
 import { CartService } from '../cart/services/cart.service';
-import { Category } from '../products/models/category.enum';
+import { LocalStorageService } from '../core/services/local-storage.service';
 
 @Component({
   selector: 'app-first',
@@ -12,7 +12,14 @@ export class FirstComponent implements DoCheck {
   isVisible = false;
   totalQuantity: number;
 
-  constructor(private cartService: CartService) { }
+  hasLocalStorageService = false;
+
+  constructor(private cartService: CartService, @Optional() private localStorageService?: LocalStorageService) 
+  {
+    if(localStorageService){
+      this.hasLocalStorageService = true;
+    }
+  }
 
   ngDoCheck(): void {
     this.totalQuantity = this.cartService.getTotalQuantity();
