@@ -24,6 +24,12 @@ Added template variable #appTitle, used @ViewChild for setting.
 
 Used several hook methods, like ngAfterViewInit, ngAfterViewChecked, ngDoCheck etc. Used several DOM events() and HighlightDirective for implementing functionality, related to button highlights. Highlight color is different according to borderColor of each button.
 
+Implemented ConfigOptionsService to get/set user data(login/email/id etc.) Added service/token ConstantsService and registered it using useValue. 
+
+Implemented GeneratorService with functionality for generating random sequence with fixed length. Added function GeneratorFactory, which returns generated sequence, using GeneratorService. Created token generatedString and used it with useFactory and deps for GeneratorFactory registering as provider. 
+
+Created class/token LocalStorageService, which works with window.localStorage.
+
 
 ## Development server
 
