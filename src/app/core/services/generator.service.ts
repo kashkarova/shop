@@ -8,20 +8,15 @@ export class GeneratorService {
   constructor() { }
 
   generate(sequenceLength: number): string {
-    const characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    const symbolsSequence = "";
+    const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let symbolsSequence = '';
 
-    for (var i = 0; i < sequenceLength; i++) {
-      symbolsSequence.split(characters.charAt(Math.floor(Math.random() * sequenceLength)));
+    for (let i = 0; i < sequenceLength; i++) {
+      symbolsSequence = symbolsSequence + characters.charAt(Math.floor(Math.random() * sequenceLength));
     }
 
     return symbolsSequence;
   }
 }
 
-const generatedString = new InjectionToken<GeneratorService>(
-  'Generated string token',
-  {
-    providedIn: "root",
-    factory: () => new GeneratorService(),
-  })
+export const GENERATE_STRING = new InjectionToken<string>('Generate string');

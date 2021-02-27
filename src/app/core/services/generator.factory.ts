@@ -1,3 +1,5 @@
-function GeneratorFactory(sequenceLength: number): string {
-  return this.generatorService.generate(sequenceLength);
+import { GeneratorService } from './generator.service';
+
+export function generatorFactory(sequenceLength: number): Function {
+  return (generatorService: GeneratorService) => generatorService.generate(sequenceLength);
 }

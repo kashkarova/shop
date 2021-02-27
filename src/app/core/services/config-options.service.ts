@@ -1,32 +1,32 @@
 import { Injectable } from '@angular/core';
-import { ConfigModel } from '../models/config-model';
+import { UserModel } from '../models/user-model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConfigOptionsService {
 
-  private configModel: ConfigModel;
+  private userModel: UserModel;
 
   constructor() {
-    this.configModel = new ConfigModel();
+    this.userModel = new UserModel();
    }
 
-  setConfigModel(
+  setUser(
     id: number,
     login: string,
     email: string,
     passwordHash: string,
     dateOfBirth: Date
   ): void {
-    this.configModel.id = id;
-    this.configModel.login = login;
-    this.configModel. email = email;
-    this.configModel.passwordHash = passwordHash;
-    this.configModel.dateOfBirth = dateOfBirth;
+    this.userModel.id = id;
+    this.userModel.login = login;
+    this.userModel.email = email;
+    this.userModel.passwordHash = passwordHash;
+    this.userModel.dateOfBirth = dateOfBirth;
   }
 
-  getConfigModel(): ConfigModel {
-    return this.configModel;
+  getUser(): UserModel {
+    return this.userModel;
   }
 }

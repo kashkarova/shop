@@ -1,4 +1,4 @@
-export interface IConfigModel {
+export interface IUser {
     id: number;
     login: string;
     email: string;
@@ -6,7 +6,7 @@ export interface IConfigModel {
     dateOfBirth: Date;
 }
 
-export class ConfigModel implements IConfigModel {
+export class UserModel implements IUser {
     id: number;
     login: string;
     email: string;

@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 
-const constantAppObj = { App: "TaskManager", Ver: "1.0", API_URL: "http://product-store.com" }
-
-@Injectable({
-  providedIn: 'root',
-  useValue: constantAppObj
-})
-
+@Injectable()
 export class ConstantsService {
+
+  TaskManagesConst = { App: 'TaskManager', Ver: '1.0', API_URL: 'http://product-store.com' };
 
   constructor() { }
 }
+
+export const TaskManagesConst = new ConstantsService().TaskManagesConst;
+
