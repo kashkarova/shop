@@ -42,7 +42,7 @@ export class FirstComponent implements DoCheck, OnInit {
     console.log(this.constantService);
     console.log('Generated token:', this.generator);
     this.localStorageService.setItem(user.id.toString(), user.login);
-    console.log('Getting user login from local storage:'+this.localStorageService.getItemByKey(user.id.toString()));
+    console.log('Getting user login from local storage:' + this.localStorageService.getItemByKey(user.id.toString()));
   }
 
   ngDoCheck(): void {
