@@ -5,8 +5,10 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
         </ul>
+        <h4 class="mr-5" [ngClass]="{invisible: isLogInButtonVisible}">Hello, {{userName}}</h4>
+        <button appHighlight class="btn btn-warning my-2 my-lg-0 mr-2" type="submit" [ngClass]="{invisible: !isLogInButtonVisible}" (click)="logInClick()">Log In</button>
         <button appHighlight class="btn btn-secondary my-2 my-lg-0" type="submit">Cart
-            <span class="badge badge-primary badge-pill" [ngClass]="{invisible: !isVisible}">{{totalQuantity}}</span>
+            <span class="badge badge-primary badge-pill" [ngClass]="{invisible: !isTotalQuantityVisible}">{{totalQuantity}}</span>
         </button>
     </div>
 </nav>

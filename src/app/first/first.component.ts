@@ -18,8 +18,10 @@ import { LocalStorageService } from '../core/services/local-storage.service';
 })
 export class FirstComponent implements DoCheck, OnInit {
 
-  isVisible = false;
+  isTotalQuantityVisible = false;
+  isLogInButtonVisible = true;
   totalQuantity: number;
+  userName: string;
 
   public generatedString: string;
 
@@ -35,20 +37,25 @@ export class FirstComponent implements DoCheck, OnInit {
   ngOnInit(): void {
     this.configOptionsService.setUser(1, 'user', 'test@gmail.com', '', new Date());
     const user = this.configOptionsService.getUser();
+    this.userName = user.login;
     console.log(user);
     console.log(this.constantService);
     console.log('Generated token:', this.generator);
     this.localStorageService.setItem(user.id.toString(), user.login);
-    console.log(this.localStorageService.getItemByKey(user.id.toString()));
+    console.log('Getting user login from local storage:'+this.localStorageService.getItemByKey(user.id.toString()));
   }
 
   ngDoCheck(): void {
     this.totalQuantity = this.cartService.getTotalQuantity();
 
     if (this.totalQuantity <= 0) {
-      this.isVisible = false;
+      this.isTotalQuantityVisible = false;
     } else {
-      this.isVisible = true;
+      this.isTotalQuantityVisible = true;
     }
+  }
+
+  logInClick(): void{
+    this.isLogInButtonVisible = !this.isLogInButtonVisible;
   }
 }
